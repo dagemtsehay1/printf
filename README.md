@@ -1,5 +1,5 @@
-custom printf method###  Team Project
-# Alx 0x11. C - printf
+###  Team Project
+# Alx Project 0x11. C - printf
 
 ### Description
 
