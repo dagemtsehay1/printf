@@ -1,4 +1,5 @@
 ###  Team Project
+![Github All Contributors](https://img.shields.io/badge/all%20contributors-2-brightgreen)
 # Alx Project 0x11. C - printf
 
 ### Description
