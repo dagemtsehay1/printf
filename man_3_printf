@@ -1,97 +1,69 @@
-.TH man 3 "25 September 2020" "ALX-HOLBERTON SCHOOL" "_PRINTF"
+.TH man 3 "16 march 2021" "0.10" "_printf man page"
 .SH NAME
 .B _printf
-- formatted output conversion
+- Formatted output conversion.
 .SH SYNOPSIS
-.B #include \(dqholberton.h\(dq
-.sp
+.B #include "holberton.h"
+
 .B int _printf(const char *
 .I format
-.B , ...);
+.B , ...)
 .SH DESCRIPTION
-The function _printf is a variadic function that produces a string according to a
+.B _printf()
+Prints to standard output under the control of a 
 .I format
-and prints it to the standard output, much like the C standard library function printf. It can receive a variable number of arguments.
-.sp
-.B Return value
-.sp
-On success, _printf returns the number of characters printed. If
-.I format
-is NULL or if the functions encounters any errors, it returns -1.
-.sp
-.B Format of the format string
-.sp
-The format string can contain any characters, just like a regular string, in double quotes, which will be printed as is. For example, _printf(\(dqHello\(dq) will print: Hello.
-However, this format string can contain
-.I conversion specifiers.
-These start with a %, and are followed with a character (see
-.I conversion specifiers
-). Special characters like a new line are escaped, for example _printf(\(dq\\n\(dq) will print a new line.
-.sp
-.B Conversion specifiers
-.sp
-These are the characters that specify the type of the variable that needs to be printed. The variables to be printed are separated from the format string with a comma. Each variable passed to _printf need to have a conversion specifier.
-.sp
-.B i, d
-- Both these specifiers are for
-.I int
-arguments. They convert the variable to a decimal number, positive or negative.
-.sp
-.B c
-- Prints a
-.I single character.
-.sp
+string that specifies how subsequent arguments are converted for output. 
+.SH Return value
+On successful return, these functions return the number of characters printed, excluding the null byte used to end output to strings.
+
+If an output error is encountered, a negative value is returned.
+.SH Format of the format string
+The format string is composed of 0 or more directives (ordinary characters that are not %), which are copied to the output stream. The format string is also composed of conversion specifications, each of which result in fetching zero or more subsequent arguments. Each conversion specification is introduced by the character % and ends with the conversion specifier.
+The argument must correspond properly with the conversion specifier. By default, the arguments are used in the order given.
+.SH The conversion specifier
+A character that specifies the type of conversion to be applied. The conversion specifiers and their meanings are:
+.TP
+.BR c
+The int argument is converted to an unsigned char, then the resulting character is written
+.TP
 .B s
-- Prints an entire
-.I string.
-.sp
-.B u
-- Prints an
-.I unsigned int.
-.sp
-.B x, X
-- Respecively print a number in lowercase and uppercase
-.I hexadecimal
-base.
-.sp
-.B o, b
-- Respectively print a number in
-.I octal
-and
-.I binary
-base.
-.sp
-.B %
-- Acts like an escape for the character %. To print \(dq%\(dq, the format string should contain \(dq%%\(dq.
-.sp
-.B r, R
-- Respectively print a string in reverse and in ROT13 encryption.
-.sp
+The const char * argument is expected to be a pointer to an array of character type (pointer to a string). Characters from the array are written up to a terminating null byte, but do ot include the terminating null byte.
+.TP
 .B S
-- Prints a string, but non-printable characters are printed this way: \\x, followed by the ASCII code value in uppercase hexadecimal.
-.sp
+Prints a string. Non printable characters are printed as "\x" followed by their ASCII values in two digit hexadecimal
+.TP
+.B d, i
+The int argument is converted to signed decimal notation.
+.TP
+.B x, X
+The unsigned int argument is converted to unsigned lowercase hexadecimal notation(x), or unsigned uppercase hexadecimal notation(X).
+.TP
+.B u
+The unsigned int argument is converted to unsigned decimal notation
+.TP
+.B o, b
+The unsigned int argument is converted to unsigned octal notation(o) or binary notation(b).
+.TP
 .B p
-- Prints an address, given by a pointer variable
-.sp
-.B Flag characters for conversion specifiers
-.sp
-.B +
-- Prints a plus sign in front of positive signed integers and a minus sign in front of negative signed integers.
- + overrides a space when both flags are given.
-.sp
-.B ' '
-- Prints a space in front of signed integers.
-.sp
-.B #
-- Modifier for unsigned conversions. For x, prepends \(dq0x\(dq, and for X, prepends \(dq0X\(dq. For o, if the converted number doesn't already begin with a 0, prepends a 0.
-.sp
+Address is printed in hexadecimal.
+.TP
+.B r
+Prints a string in reverse.
+.TP
+.B R
+Prints a string converted to rot13
+.TP
+.B %
+A '%' is written but no argument is converted. The complete version specification is '%%'
+.SH EXAMPLE
+To print the day of the year, where weekday and month are pointers to strings and day and year are integers:
+
+#include "holberton.h"
+
+_printf("%s, %s %d, %d\\n", weekday, month, day, year);
 .SH SEE ALSO
 .I printf(3)
-.sp
 .SH BUGS
-_printf does not take care of precision yet. For example, _printf(\(dq%.56x\(dq) will not produce the same output as the call to the standard library printf. 
--Ther are some undefined behaviours with some edge cases like printing '%' and so on. (querks here and there)
--The printerqeue(the buffer)doesnt always store 1024 character before making the sytem calls ther are some unidentified problems
-.SH AUTHORS
-Hileamlak M. Yitayew and Pacifique Irakoze, Cohort 0.
-© 2021 GitHub, Inc.
+No known bugs.
+.SH AUTHOR
+David Musau, Tinsaye Simeneh
