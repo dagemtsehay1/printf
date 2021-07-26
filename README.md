@@ -24,3 +24,8 @@ These arguments are placed using the percentage '%' operator
 > ``` va_end (man 3 va_end)```
 > ``` va_copy (man 3 va_copy)```
 > ``` va_arg (man 3 va_arg)```
+
+> ## Compilation
+> ``` gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c```
+> ``` main files will include your main header file (holberton.h): #include holberton.h```
+> ``` You might want to look at the gcc flag -Wno-format when testing with your _printf and the standard printf```
